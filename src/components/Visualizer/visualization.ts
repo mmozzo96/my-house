@@ -1,5 +1,5 @@
 import { Screen } from "./elements/screen";
-import { Desk } from "./elements/table";
+import { Desk } from "./elements/desk";
 import { Viewport } from "./viewport";
 import * as THREE from "three";
 
