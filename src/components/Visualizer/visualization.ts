@@ -1,5 +1,5 @@
 import { Screen } from "./elements/screen";
-import { Table } from "./elements/table";
+import { Desk } from "./elements/table";
 import { Viewport } from "./viewport";
 import * as THREE from "three";
 
@@ -11,7 +11,7 @@ export class Visualization {
   }
 
   public AddElements() {
-    const table = new Table(this.vpt);
+    const table = new Desk(this.vpt);
     const pc = new Screen(this.vpt);
 
     const assets = [table.element, pc.element];
