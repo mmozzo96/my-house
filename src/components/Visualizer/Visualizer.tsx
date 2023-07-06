@@ -1,17 +1,47 @@
 import React from "react";
 import { Viewport } from "./viewport";
+import { Visualization } from "./visualization";
 import "./visualizer.scss";
 
+export class VizStore {
+  visualization!: Visualization;
+  static instance: VizStore;
+
+  constructor(viz: Visualization) {
+    this.visualization = viz;
+    VizStore.instance = this;
+  }
+
+  public static SetInstance(viz: Visualization) {
+    VizStore.instance = new VizStore(viz);
+  }
+
+  public static GetInstance() {
+    return VizStore.instance;
+  }
+}
+
 const Visualizer: React.FC = () => {
-  const div = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!div) return;
-    const viewport = new Viewport(div.current as HTMLDivElement);
-    viewport.CreateCube();
-  }, [div]);
+    if (!ref) return;
+    const viewport = new Viewport(ref.current as HTMLDivElement);
+    const visualization = new Visualization(viewport);
+    VizStore.SetInstance(visualization);
 
-  return <div id="visualizer" ref={div}></div>;
+    visualization.AddElements();
+  }, [ref]);
+
+  window.addEventListener("resize", () => {
+    if (!ref) return;
+    VizStore.GetInstance().visualization.vpt.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
+  });
+
+  return <div id="visualizer" ref={ref}></div>;
 };
 
 export default Visualizer;
