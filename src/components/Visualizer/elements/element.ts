@@ -2,13 +2,13 @@ import { Viewport } from "../viewport";
 import * as THREE from "three";
 
 export type ElementType = {
-  heigth: number;
-  width: number;
-  depth: number;
   CreateElement: () => void;
 };
 
 export class Element3D {
+  heigth!: number;
+  width!: number;
+  depth!: number;
   vpt!: Viewport;
   element!: THREE.Group;
 

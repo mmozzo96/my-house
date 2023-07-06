@@ -3,9 +3,6 @@ import { Element3D, ElementType } from "./element";
 import * as THREE from "three";
 
 export class Desk extends Element3D implements ElementType {
-  heigth!: number;
-  width!: number;
-  depth!: number;
   constructor(vpt: Viewport) {
     super(vpt);
     this.CreateElement();

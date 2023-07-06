@@ -8,9 +8,6 @@ export class Screen extends Element3D implements ElementType {
   standHeight!: number;
   standZshifth!: number;
   screenStandDepth!: number;
-  heigth!: number;
-  width!: number;
-  depth!: number;
 
   constructor(vpt: Viewport) {
     super(vpt);
