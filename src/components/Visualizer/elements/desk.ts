@@ -9,7 +9,7 @@ export class Desk extends Element3D implements ElementType {
   }
 
   public CreateElement() {
-    const flatHeight = 0.3;
+    const flatHeight = 0.15;
     const flatWidth = 5;
     this.width = flatWidth;
     const flatDepth = 2.5;
@@ -30,7 +30,13 @@ export class Desk extends Element3D implements ElementType {
     this.heigth = flatHeight + legHeight;
     const halfLegHeight = legHeight / 2;
 
-    const legGeometry = new THREE.CylinderGeometry(0.2, 0.2, legHeight + 2, 16);
+    const legRadius = 0.15;
+    const legGeometry = new THREE.CylinderGeometry(
+      legRadius,
+      legRadius,
+      legHeight + 2,
+      16
+    );
 
     const innerAngle = (10 * Math.PI) / 180;
     const legsGeometries = [
