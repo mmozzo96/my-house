@@ -143,65 +143,6 @@ export class Chair extends Element3D implements ElementType {
     this.element.add(back);
   }
 
-  /* private CreateSeat() {
-    const width = 2;
-    this.width = width;
-    const depth = 1.5;
-    this.depth = depth;
-    const height = 0.2;
-
-    const parabolaHeigthpercentage = 0.4;
-
-    const geometry = RoundedBox({
-      width,
-      depth,
-      height: height * (1 + parabolaHeigthpercentage),
-      widthSegments: 30,
-      depthSegments: 30,
-    });
-    geometry.translate(0, height * parabolaHeigthpercentage, 0);
-
-    const parabola = (x: number) =>
-      -(x ** 2) * height * parabolaHeigthpercentage +
-      height * (0.5 + parabolaHeigthpercentage);
-    const vertices = geometry.attributes.position;
-    const v3 = new THREE.Vector3();
-    for (let i = 0; i < vertices.count; i++) {
-      v3.fromBufferAttribute(vertices, i);
-      v3.y =
-        v3.y > parabola((v3.x * 2) / this.width)
-          ? parabola((v3.x * 2) / this.width)
-          : v3.y > parabola((v3.z * 2) / this.depth)
-          ? parabola((v3.z * 2) / this.depth)
-          : v3.y;
-      vertices.setY(i, v3.y);
-    }
-
-    const mesh = new THREE.Mesh(geometry, this.vpt.material);
-
-    this.element.add(mesh);
-
-    return { width, height, depth };
-  } */
-
-  /* private CreateBack(seatWidth: number, seatheight: number, seatDepth: number) {
-    const width = 2;
-    const height = 3;
-    const depth = 0.3;
-    const geometry = RoundedBox({
-      width,
-      depth,
-      height,
-      widthSegments: 30,
-      depthSegments: 30,
-    });
-
-    const mesh = new THREE.Mesh(geometry, this.vpt.material);
-    mesh.position.set(0, (height + seatheight) / 2, -((seatDepth + depth) / 2));
-
-    this.element.add(mesh);
-  } */
-
   private ScaleForDebugging(scale: number) {
     this.element.scale.set(scale, scale, scale);
   }
