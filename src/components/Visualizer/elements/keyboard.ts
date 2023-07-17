@@ -1,7 +1,7 @@
 import { Viewport } from "../viewport";
 import { Element3D, ElementType } from "./element";
 import * as THREE from "three";
-import { RoundedBox } from "./util";
+import { RoundedBox } from "./geometries/RoundedBox";
 import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUtils";
 
 export class Keyboard extends Element3D implements ElementType {
@@ -15,25 +15,25 @@ export class Keyboard extends Element3D implements ElementType {
 
   public CreateElement() {
     this.width = 1.3;
-    this.heigth = 0.1;
+    this.height = 0.1;
     this.depth = 0.5;
     const geometry = RoundedBox({
       width: this.width,
-      height: this.heigth,
+      height: this.height,
       depth: this.depth,
     });
 
     const vertices = geometry.attributes.position;
     const v3 = new THREE.Vector3();
     const inclineFactor = 4;
-    this.steepness = this.heigth / (this.depth * inclineFactor);
+    this.steepness = this.height / (this.depth * inclineFactor);
     const heightOffset =
-      (this.heigth * (inclineFactor - 2)) / (2 * inclineFactor);
+      (this.height * (inclineFactor - 2)) / (2 * inclineFactor);
     for (let i = 0; i < vertices.count; i++) {
       v3.fromBufferAttribute(vertices, i);
       v3.y =
         v3.y > -v3.z * this.steepness + heightOffset
-          ? ((v3.y * 2) / this.heigth) * (-v3.z * this.steepness + heightOffset)
+          ? ((v3.y * 2) / this.height) * (-v3.z * this.steepness + heightOffset)
           : v3.y;
       vertices.setY(i, v3.y);
     }
@@ -57,7 +57,7 @@ export class Keyboard extends Element3D implements ElementType {
       this.element.add(row);
     }
 
-    this.element.position.set(0, this.heigth / 2, 0);
+    this.element.position.set(0, this.height / 2, 0);
   }
 
   private Button() {

@@ -27,7 +27,7 @@ export class Desk extends Element3D implements ElementType {
     this.element.add(flat);
 
     const legHeight = 2.5;
-    this.heigth = flatHeight + legHeight;
+    this.height = flatHeight + legHeight;
     const halfLegHeight = legHeight / 2;
 
     const legRadius = 0.15;

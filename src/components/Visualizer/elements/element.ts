@@ -6,7 +6,7 @@ export type ElementType = {
 };
 
 export class Element3D {
-  heigth!: number;
+  height!: number;
   width!: number;
   depth!: number;
   vpt!: Viewport;

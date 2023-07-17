@@ -1,7 +1,7 @@
 import { Viewport } from "../viewport";
 import { Element3D, ElementType } from "./element";
 import * as THREE from "three";
-import { RoundedBox } from "./util";
+import { RoundedBox } from "./geometries/RoundedBox";
 
 export class Screen extends Element3D implements ElementType {
   baseHeight!: number;
@@ -129,7 +129,7 @@ export class Screen extends Element3D implements ElementType {
     this.element.add(screenCase);
     this.element.add(screen);
 
-    this.heigth = this.baseHeight + this.standHeight + height / 2;
+    this.height = this.baseHeight + this.standHeight + height / 2;
   }
 
   private ScaleForDebugging(scale: number) {
