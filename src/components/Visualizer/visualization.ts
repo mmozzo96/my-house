@@ -4,6 +4,7 @@ import { Viewport } from "./viewport";
 import * as THREE from "three";
 import { Keyboard } from "./elements/keyboard";
 import { Chair } from "./elements/chair";
+import { Book } from "./elements/book";
 
 export class Visualization {
   vpt: Viewport;
@@ -16,24 +17,28 @@ export class Visualization {
     const assets = [];
 
     const table = new Desk(this.vpt);
-    assets.push(table.element);
 
     const screen = new Screen(this.vpt);
     screen.element.position.add(
       new THREE.Vector3(0, table.height, -table.depth / 6)
     );
-    assets.push(screen.element);
 
     const keyboard = new Keyboard(this.vpt);
     keyboard.element.position.add(
       new THREE.Vector3(0, table.height, table.depth / 4)
     );
-    assets.push(keyboard.element);
 
     const chair = new Chair(this.vpt);
     chair.element.rotateY(Math.PI);
     chair.element.position.add(new THREE.Vector3(0, 0, table.depth / 2));
-    assets.push(chair.element);
+
+    const book = new Book(this.vpt);
+
+    /* assets.push(table.element);
+    assets.push(screen.element);
+    assets.push(keyboard.element);
+    assets.push(chair.element); */
+    assets.push(book.element);
 
     assets.forEach((element) => this.vpt.scene.add(element));
   }
