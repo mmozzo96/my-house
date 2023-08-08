@@ -117,11 +117,11 @@ export class Book extends Element3D implements ElementType {
         this.depth = depth + height / 2;
     }
 
-    public SetColor(color: THREE.Color) {
+    public SetColor(color: THREE.ColorRepresentation) {
         const cover = this.element.children.find(
             (o) => o.name === "cover"
         ) as THREE.Mesh<THREE.BufferGeometry, THREE.MeshPhysicalMaterial>;
-        cover.material.color = color;
+        cover.material.color = new THREE.Color(color);
     }
 
     private ScaleForDebugging(scale: number) {
