@@ -1,7 +1,7 @@
-import { Viewport } from "../viewport";
-import { Element3D, ElementType } from "./element";
+import { Viewport } from "../../viewport";
+import { Element3D, ElementType } from "../element";
 import * as THREE from "three";
-import { RoundedBox } from "./geometries/RoundedBox";
+import { RoundedBox } from "../geometries/RoundedBox";
 import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUtils";
 
 export class Keyboard extends Element3D implements ElementType {

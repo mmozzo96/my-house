@@ -28,7 +28,7 @@ export class Viewport {
     const height = element.offsetHeight;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color("papayawhip");
+    this.scene.background = new THREE.Color(0x8be891);
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);

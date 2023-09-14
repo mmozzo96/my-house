@@ -1,7 +1,6 @@
-import { Viewport } from "../viewport";
-import { Element3D, ElementType } from "./element";
+import { Viewport } from "../../viewport";
+import { Element3D, ElementType } from "../element";
 import * as THREE from "three";
-import { RoundedBox } from "./geometries/RoundedBox";
 
 export class Screen extends Element3D implements ElementType {
   baseHeight!: number;

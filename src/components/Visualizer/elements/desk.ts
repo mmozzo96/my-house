@@ -2,9 +2,9 @@ import { Viewport } from "../viewport";
 import { Element3D, ElementType } from "./element";
 import * as THREE from "three";
 
-import { Screen } from "./screen";
-import { Keyboard } from "./keyboard";
-import { Chair } from "./chair";
+import { Screen } from "./deskItems/screen";
+import { Keyboard } from "./deskItems/keyboard";
+import { Chair } from "./deskItems/chair";
 import { Book } from "./book";
 
 export class Desk extends Element3D implements ElementType {
