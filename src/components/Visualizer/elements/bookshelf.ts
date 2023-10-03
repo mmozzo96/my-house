@@ -5,6 +5,7 @@ import { Hat } from "./bookshelfItems/hat";
 import { Element3D, ElementType } from "./element";
 import * as THREE from "three";
 import { Football } from "./bookshelfItems/football";
+import { Frame } from "./bookshelfItems/frame";
 
 export class Bookshelf extends Element3D implements ElementType {
   constructor(vpt: Viewport) {
@@ -12,9 +13,11 @@ export class Bookshelf extends Element3D implements ElementType {
 
     this.CreateElement();
 
-    this.AddBooksOnLowestShelf();
+    this.AddBookStacks();
     this.AddHat();
     this.AddFootball();
+    this.AddFrame();
+    this.AddElementsLastShelf();
   }
 
   public CreateElement() {
@@ -50,34 +53,62 @@ export class Bookshelf extends Element3D implements ElementType {
     }
   }
 
-  private AddBooksOnLowestShelf() {
-    const bookStack = new BookStack(this.vpt, 15);
-    bookStack.element.rotateY(Math.PI);
-    bookStack.element.rotateZ(Math.PI / 2);
-    bookStack.element.position.add(
+  private AddBookStacks() {
+    const bookStack1 = new BookStack(this.vpt, 15);
+    bookStack1.element.rotateY(Math.PI);
+    bookStack1.element.rotateZ(Math.PI / 2);
+    bookStack1.element.position.add(
       new THREE.Vector3(
-        -bookStack.height + this.width / 2,
-        bookStack.width / 2 + 0.1 + (this.height * 2) / 5,
+        -bookStack1.height + this.width / 2,
+        bookStack1.width / 2 + 0.1 + (this.height * 2) / 5,
         0
       )
     );
-    bookStack.SetColor([0x00ff00]);
+    bookStack1.SetColor([0x00ff00]);
 
-    this.element.add(bookStack.element);
+    this.element.add(bookStack1.element);
 
-    const book = new Book(this.vpt);
-    book.element.rotateY(Math.PI);
-    book.element.rotateZ((105 * Math.PI) / 180);
-    book.element.position.add(
+    const book1 = new Book(this.vpt);
+    book1.element.rotateY(Math.PI);
+    book1.element.rotateZ((105 * Math.PI) / 180);
+    book1.element.position.add(
       new THREE.Vector3(
-        -book.height / 2 + this.width / 2 - bookStack.height - 0.128,
-        book.width / 2 - book.height / 2 + 0.1 + (this.height * 2) / 5,
+        -book1.height / 2 + this.width / 2 - bookStack1.height - 0.128,
+        book1.width / 2 - book1.height / 2 + 0.1 + (this.height * 2) / 5,
         0
       )
     );
-    book.SetColor(0x00ff00);
+    book1.SetColor(0x00ff00);
 
-    this.element.add(book.element);
+    this.element.add(book1.element);
+
+    const bookStack2 = new BookStack(this.vpt, 15);
+    bookStack2.element.rotateY(Math.PI);
+    bookStack2.element.rotateZ(Math.PI / 2);
+    bookStack2.element.position.add(
+      new THREE.Vector3(
+        -this.width / 2,
+        bookStack2.width / 2 + 0.1 + (this.height * 1) / 5,
+        0
+      )
+    );
+    bookStack2.SetColor([0x00ff00]);
+
+    this.element.add(bookStack2.element);
+
+    const book2 = new Book(this.vpt);
+    book2.element.rotateY(Math.PI);
+    book2.element.rotateZ((75 * Math.PI) / 180);
+    book2.element.position.add(
+      new THREE.Vector3(
+        -book2.height / 2 - this.width / 2 + bookStack2.height + 0.27,
+        book2.width / 2 - book2.height / 2 + 0.1 + (this.height * 1) / 5,
+        0
+      )
+    );
+    book2.SetColor(0x00ff00);
+
+    this.element.add(book2.element);
   }
 
   private AddHat() {
@@ -112,10 +143,54 @@ export class Bookshelf extends Element3D implements ElementType {
 
   private AddFootball() {
     const footballGroup = new THREE.Group();
+    footballGroup.name = "football";
 
     const football = new Football(this.vpt);
     football.element.position.set(0.3, (this.height * 0) / 5 + 0.1, 0);
 
-    this.element.add(football.element);
+    footballGroup.add(football.element);
+
+    this.element.add(footballGroup);
+  }
+
+  private AddFrame() {
+    const frame1 = new Frame(this.vpt);
+    frame1.element.scale.set(1.2, 1.2, 1.2);
+    frame1.element.rotateY((10 * Math.PI) / 180);
+    frame1.element.position.set(0.25, (this.height * 3) / 5 + 0.1, -0.05);
+
+    this.element.add(frame1.element);
+
+    const frame2 = new Frame(this.vpt);
+    frame2.element.rotateY(-(10 * Math.PI) / 180);
+    frame2.element.position.set(1, (this.height * 3) / 5 + 0.1, +0.1);
+
+    this.element.add(frame2.element);
+  }
+
+  private AddElementsLastShelf() {
+    const frame1 = new Frame(this.vpt);
+    frame1.element.scale.set(1.2, 1.2, 1.2);
+    frame1.element.rotateY((10 * Math.PI) / 180);
+    frame1.element.position.set(-1, (this.height * 4) / 5 + 0.1, -0.05);
+
+    this.element.add(frame1.element);
+
+    const bookstack1 = new BookStack(this.vpt, 4);
+    bookstack1.element.rotateY(Math.PI);
+    bookstack1.element.position.set(0.91, (this.height * 4) / 5 + 0.1, 0);
+
+    this.element.add(bookstack1.element);
+
+    const bookstack2 = new BookStack(this.vpt, 2);
+    bookstack2.element.rotateY(Math.PI);
+    bookstack2.element.rotateZ(Math.PI / 2);
+    bookstack2.element.position.set(
+      0.1,
+      (this.height * 4) / 5 + 0 + bookstack2.width / 2,
+      0
+    );
+
+    this.element.add(bookstack2.element);
   }
 }

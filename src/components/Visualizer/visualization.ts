@@ -49,6 +49,9 @@ export class Visualization {
       case "hat":
         this.PopUpHat(group, "pop-up");
         break;
+      case "football":
+        this.PopUpFootball(group, "pop-up");
+        break;
       default:
         this.PopDown();
         break;
@@ -64,6 +67,8 @@ export class Visualization {
         case "hat":
           this.PopUpHat(obj as THREE.Group, "downsize");
           break;
+        case "football":
+          this.PopUpFootball(obj as THREE.Group, "downsize");
       }
     });
   }
@@ -74,10 +79,12 @@ export class Visualization {
   }
 
   private PopUpHat(group: THREE.Group, action: PopUpDown) {
-    if (action === "pop-up") {
-      group.position.set(0, 0, 0.3);
-    } else {
-      group.position.set(0, 0, 0);
-    }
+    if (action === "pop-up") group.position.set(0, 0, 0.3);
+    else group.position.set(0, 0, 0);
+  }
+
+  private PopUpFootball(group: THREE.Group, action: PopUpDown) {
+    if (action === "pop-up") group.position.set(0, 0, 0.3);
+    else group.position.set(0, 0, 0);
   }
 }
