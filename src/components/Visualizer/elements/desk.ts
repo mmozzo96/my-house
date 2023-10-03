@@ -152,13 +152,25 @@ export class Desk extends Element3D implements ElementType {
   }
 
   private AddBooks() {
-    const book = new Book(this.vpt);
-    book.element.rotateY((70 * Math.PI) / 180);
-    book.element.position.add(
+    const book1 = new Book(this.vpt);
+    book1.element.rotateY((70 * Math.PI) / 180);
+    book1.element.position.add(
       new THREE.Vector3((-2 * this.width) / 6, this.flatHeight, -this.depth / 8)
     );
 
-    this.element.add(book.element);
+    this.element.add(book1.element);
+
+    const book2 = new Book(this.vpt);
+    book2.element.rotateY((85 * Math.PI) / 180);
+    book2.element.position.add(
+      new THREE.Vector3(
+        (-2 * this.width) / 6,
+        this.flatHeight + book1.height,
+        -this.depth / 8
+      )
+    );
+
+    this.element.add(book2.element);
   }
 
   private AddChair() {
