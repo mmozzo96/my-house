@@ -10,9 +10,13 @@ export class Visualization {
 
   constructor(vpt: Viewport) {
     this.vpt = vpt;
+
+    this.AddElements();
+
+    this.AddShadows();
   }
 
-  public AddElements() {
+  private AddElements() {
     const assets: THREE.Group[] = [];
 
     const desk = new Desk(this.vpt);
@@ -31,6 +35,15 @@ export class Visualization {
     assets.push(bookshelf.element);
 
     assets.forEach((element) => this.vpt.scene.add(element));
+  }
+
+  private AddShadows() {
+    this.vpt.scene.traverse((o) => {
+      if (o.isObject3D && (o as THREE.Mesh).isMesh) {
+        o.castShadow = true;
+        o.receiveShadow = true;
+      }
+    });
   }
 
   public PopUp() {

@@ -29,8 +29,6 @@ const Visualizer: React.FC = () => {
     const viewport = new Viewport(ref.current as HTMLDivElement);
     const visualization = new Visualization(viewport);
     VizStore.SetInstance(visualization);
-
-    visualization.AddElements();
   }, [ref]);
 
   window.addEventListener("resize", () => {

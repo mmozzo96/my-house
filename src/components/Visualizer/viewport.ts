@@ -33,19 +33,21 @@ export class Viewport {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);
 
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
     this.scene.add(new THREE.AxesHelper(5));
-    this.scene.add(new AmbientLight());
-    const spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(100, 1000, 100);
+    this.scene.add(new AmbientLight(0xffffff, 1));
+    const spotLight = new THREE.DirectionalLight(0xffffff, 6);
+    spotLight.position.set(10, 100, 10);
 
     spotLight.castShadow = true;
 
     spotLight.shadow.mapSize.width = 1024;
     spotLight.shadow.mapSize.height = 1024;
 
-    spotLight.shadow.camera.near = 500;
-    spotLight.shadow.camera.far = 4000;
-    spotLight.shadow.camera.fov = 30;
+    spotLight.shadow.camera.near = 0.5;
+    spotLight.shadow.camera.far = 500;
 
     this.scene.add(spotLight);
 
