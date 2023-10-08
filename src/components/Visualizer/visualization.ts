@@ -2,6 +2,7 @@ import { Desk } from "./elements/desk";
 import { Viewport } from "./viewport";
 import * as THREE from "three";
 import { Bookshelf } from "./elements/bookshelf";
+import { RoomWalls } from "./elements/roomWalls";
 
 type PopUpDown = "pop-up" | "downsize";
 
@@ -33,6 +34,10 @@ export class Visualization {
     bookshelf.element.translateX(desk.depth + 1 + bookshelf.width / 2);
 
     assets.push(bookshelf.element);
+
+    const roomWalls = new RoomWalls(this.vpt);
+
+    assets.push(roomWalls.element);
 
     assets.forEach((element) => this.vpt.scene.add(element));
   }

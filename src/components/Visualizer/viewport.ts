@@ -36,7 +36,6 @@ export class Viewport {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    this.scene.add(new THREE.AxesHelper(5));
     this.scene.add(new AmbientLight(0xffffff, 1));
     const spotLight = new THREE.DirectionalLight(0xffffff, 6);
     spotLight.position.set(10, 100, 10);
