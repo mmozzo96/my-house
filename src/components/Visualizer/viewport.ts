@@ -54,7 +54,7 @@ export class Viewport {
 
     this.control = new OrbitControls(this.camera, this.renderer.domElement);
 
-    this.camera.position.set(10, 10, 10);
+    this.camera.position.set(11.19, 8.63, 9.6);
     this.control.update();
 
     this.raycaster = new THREE.Raycaster();
